@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WorkoutPlanner.Models.ExerciseType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container borderOne p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Excercise Types</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="ExerciseType" asp-action="Create" class="btn btn-primary">Create new Exercise Type</a>
+        </div>
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+        <form asp-controller="ExerciseType" asp-action="Index">
+            <p>
+                <input type="text" name="SearchString" />
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Exercise Type Name
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exerciseType in Model)
+                {
+                    <tr>
+                        <td width="35%">@exerciseType.ExerciseTypeName</td>
+                        <td width="30%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="ExerciseType" asp-action="Update" asp-route-Id="@exerciseType.Id" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="ExerciseType" asp-action="Delete" asp-route-Id="@exerciseType.Id" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+</div>

@@ -1,0 +1,80 @@
+﻿@model WorkoutPlanner.Models.ViewModels.ExerciseVM
+
+<form method="post" asp-action="Create">
+    <div class="border p-3 borderOne">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Exercise</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Exercise.ExerciseType"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Weight"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Sets"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Reps"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Exercise.Date">Date</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <select asp-for="Exercise.ExerciseTypeId" asp-items="@Model.ExerciseList" class="form-control">
+                            <option selected>--Select Expense Type--</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Weight" class="form-control" />
+                        <span asp-validation-for="Exercise.Weight" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Sets" class="form-control" />
+                        <span asp-validation-for="Exercise.Sets" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Reps" class="form-control" />
+                        <span asp-validation-for="Exercise.Reps" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input type="date" asp-for="Exercise.Date" class="form-control" />
+                        <span asp-validation-for="Exercise.Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#add").click(function (e) {
+                e.preventDefault();
+                var i = ($(".items").length) / 2;
+                var n = '<br/>'+'<input type="text" class="items" name="users[' + i + '].FirstName" />' +
+                    '<input type="text" class="items" name="users[' + i + '].LastName" />';
+
+                $("#item-list").append(n);
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,67 @@
+﻿@model WorkoutPlanner.Models.ViewModels.ExerciseVM
+
+<form method="post" asp-action="Update">
+    <input asp-for="Exercise.Id" hidden />
+    <div class="border p-3 borderOne">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Update Exercise</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Exercise.ExerciseType"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Weight"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Sets"></label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Exercise.Reps"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Exercise.Date">Date</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <select asp-for="Exercise.ExerciseTypeId" asp-items="@Model.ExerciseList" class="form-control">
+                            <option selected>--Select Expense Type--</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Weight" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Sets" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Exercise.Reps" class="form-control" />
+                    </div>
+                    <div class="col-3">
+                        <input type="date" asp-for="Exercise.Date" class="form-control" />
+                        <span asp-validation-for="Exercise.Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12 offset-2 row">
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-info w-75" value="Update" />
+                        </div>
+                        <div class="col-4">
+                            <a asp-action="Index" class="btn btn-success w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
