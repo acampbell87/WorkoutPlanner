@@ -33,12 +33,9 @@ namespace WorkoutPlanner.Controllers
 
             //Creates Index Object from DB and joins exercise type
             //IEnumerable<Exercise> objList = _db.Exercises;
-            var objList = from e in _db.Exercises
-                           select e;
-            foreach (var obj in objList)
-            {
-                obj.ExerciseType = _db.ExerciseTypes.FirstOrDefault(u => u.Id == obj.ExerciseTypeId);
-            }
+            var objList = _db.Exercises
+                .Include(e => e.ExerciseType)
+                .AsNoTracking();
             //Reorders the objList depending on the current sortOrder
             switch (sortOrder)
             {
